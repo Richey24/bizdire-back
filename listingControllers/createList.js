@@ -2,8 +2,8 @@ const { default: axios } = require("axios")
 const { BlobServiceClient } = require("@azure/storage-blob")
 const { BusinessListing } = require("../schema")
 const fs = require("fs")
-// require("dotenv").config({ path: "../.env" })
-const blobClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=absa7kzimnaf;AccountKey=8sH4dhZjJa8cMyunmS1iDmwve5hZKLo5kaA1M9ubZScLCJ2oEsuSvWT46P2t+ouKoCwFENosnC4m+AStWRQ+rQ==;EndpointSuffix=core.windows.net")
+require("dotenv").config({ path: "../.env" })
+const blobClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE)
 const containerClient = blobClient.getContainerClient("newcontainer")
 
 
