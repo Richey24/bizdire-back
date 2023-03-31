@@ -7,6 +7,7 @@ const updateUser = require("../userController/updateUser");
 const deleteUser = require("../userController/deleteUser");
 const getAllUser = require("../userController/getAllUser");
 const resetPassword = require("../userController/resetPass");
+const sendResetMail = require("../userController/sendResetMail");
 
 const userRoute = express.Router()
 
@@ -29,6 +30,6 @@ userRoute.put("/update/:id", restrict, updateUser)
 userRoute.delete("/delete/:id", restrict, deleteUser)
 userRoute.get("/get/all", restrict, getAllUser)
 userRoute.post("/reset/password", restrict, resetPassword)
-
+userRoute.post("/reset/send", sendResetMail)
 
 module.exports = userRoute

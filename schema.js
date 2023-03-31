@@ -4,10 +4,7 @@ const user = mongoose.Schema({
     email: {
         type: String
     },
-    firstname: {
-        type: String
-    },
-    lastname: {
+    name: {
         type: String
     },
     password: {
@@ -28,6 +25,9 @@ const user = mongoose.Schema({
 
 const listing = mongoose.Schema({
     title: {
+        type: String
+    },
+    userID: {
         type: String
     },
     category: {
@@ -93,7 +93,36 @@ const listing = mongoose.Schema({
     },
 })
 
+const category = mongoose.Schema({
+    category: {
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now()
+    },
+})
+
+const location = mongoose.Schema({
+    state: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
+})
+
 const BusinessUser = mongoose.model("Business_user", user, "business_user")
 const BusinessListing = mongoose.model("Business_listing", listing, "business_listing")
+const BizCat = mongoose.model("Biz_cat", category, "biz_cat")
+const BizLocation = mongoose.model("Biz_loc", location, "biz_loc")
 
-module.exports = { BusinessUser, BusinessListing }
+module.exports = { BusinessUser, BusinessListing, BizCat, BizLocation }

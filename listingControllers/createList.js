@@ -1,9 +1,9 @@
 const { default: axios } = require("axios")
 const { BlobServiceClient } = require("@azure/storage-blob")
-const { BusinessListing } = require("../schema")
+const { BusinessListing, BizLocation } = require("../schema")
 const fs = require("fs")
 require("dotenv").config({ path: "../.env" })
-const blobClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE)
+const blobClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=absa7kzimnaf;AccountKey=8sH4dhZjJa8cMyunmS1iDmwve5hZKLo5kaA1M9ubZScLCJ2oEsuSvWT46P2t+ouKoCwFENosnC4m+AStWRQ+rQ==;EndpointSuffix=core.windows.net")
 const containerClient = blobClient.getContainerClient("newcontainer")
 
 
@@ -40,6 +40,14 @@ const createList = async (req, res) => {
     const location = await resp.data
     body.state = location.state
     body.city = location.place_name
+    const obj = {
+        state: location.state,
+        city: location.place_name
+    }
+    const loc = await BizLocation.find({ state: location.state, city: location.place_name })
+    if (loc.length < 1) {
+        await BizLocation.create(obj)
+    }
     await BusinessListing.create(body)
     return res.status(200).json({ message: "Created Successfully" })
     // } catch (error) {

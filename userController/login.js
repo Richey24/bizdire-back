@@ -10,7 +10,7 @@ const login = async (req, res) => {
         }
         const user = await BusinessUser.findOne({ email: body.email })
         if (!user) {
-            return res.status(404).json({ message: "No user found with this email" })
+            return res.status(401).json({ message: "No user found with this email" })
         }
         const pass = await argon2.verify(user.password, body.password)
         if (!pass) {

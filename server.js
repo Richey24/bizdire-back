@@ -3,6 +3,8 @@ const userRoute = require("./routes/userRoutes");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const listingRoutes = require("./routes/listingRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
+const locationRoutes = require("./routes/locationRoutes");
 const app = express()
 require("dotenv").config({ path: ".env" })
 
@@ -34,3 +36,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRoute)
 // all listing routes begin with /listing
 app.use("/listing", listingRoutes)
+// all category routes begin with /category
+app.use("/category", categoryRoutes)
+// all location routes begin with /location
+app.use("/location", locationRoutes)
