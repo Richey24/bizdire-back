@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const listingRoutes = require("./routes/listingRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const locationRoutes = require("./routes/locationRoutes");
+const contactMail = require("./mail/contactMail");
 const app = express()
 require("dotenv").config({ path: ".env" })
 
@@ -31,6 +32,7 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.send("hello world")
 })
+app.post("/contact", contactMail)
 
 // all user routes begin with /user
 app.use("/user", userRoute)
