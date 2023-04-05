@@ -10,6 +10,18 @@ const user = mongoose.Schema({
     password: {
         type: String
     },
+    phoneNumber: {
+        type: String
+    },
+    zipcode: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    description: {
+        type: String
+    },
     mainToken: {
         type: String
     },

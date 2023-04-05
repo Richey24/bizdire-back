@@ -12,8 +12,8 @@ const createList = async (req, res) => {
     const body = req.body
     const file = req.file
     console.log(body);
-    if (!body.title || !body.category) {
-        return res.status(400).json({ message: "Send all required information" })
+    if (!body.title || !body.category || !body.userID) {
+        return res.status(400).json({ message: "Send all required information and user ID" })
     }
     if (file) {
         // upload image to azure
