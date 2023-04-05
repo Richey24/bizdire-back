@@ -28,7 +28,7 @@ userRoute.post("/login", login)
 userRoute.get("/get/:id", restrict, getOneUser)
 userRoute.put("/update/:id", restrict, updateUser)
 userRoute.delete("/delete/:id", restrict, deleteUser)
-userRoute.get("/get/all", restrict, getAllUser)
+userRoute.get("/find/all", restrict, getAllUser)
 userRoute.post("/reset/password", restrict, resetPassword)
 userRoute.post("/reset/send", sendResetMail)
 
