@@ -15,7 +15,7 @@ const contactMail = async (req, res) => {
     await theMailer.sendMail({
         from: `"${body.name}" <${body.email}>`,
         to: `info@ibiz.world, info@ibiz.world`,
-        subject: "Reset Your Password",
+        subject: `${body.subject}`,
         html: `
            <p>${body.message}</p>
         `
