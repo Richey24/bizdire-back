@@ -20,7 +20,7 @@ const contactMail = async (req, res) => {
            <p>${body.message}</p>
         `
     })
-    res.status(300).json({ message: "Mail sent" })
+    res.status(200).json({ message: "Mail sent" })
 }
 
 module.exports = contactMail
