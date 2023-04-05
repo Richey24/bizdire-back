@@ -13,7 +13,7 @@ const contactMail = async (req, res) => {
     });
 
     await theMailer.sendMail({
-        from: `"${body.name}" <${body.email}>`,
+        from: `"${body.name}" <info@israelbiblecamp.com>`,
         to: `info@ibiz.world, info@ibiz.world`,
         subject: `${body.subject}`,
         html: `
