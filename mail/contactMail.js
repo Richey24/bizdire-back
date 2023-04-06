@@ -14,7 +14,7 @@ const contactMail = async (req, res) => {
 
     await theMailer.sendMail({
         from: `"${body.name}" <info@israelbiblecamp.com>`,
-        to: `info@ibiz.world, info@ibiz.world`,
+        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
         subject: `${body.subject}`,
         html: `
            <p>${body.message}</p>
