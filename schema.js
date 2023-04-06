@@ -19,6 +19,12 @@ const user = mongoose.Schema({
     image: {
         type: String
     },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
     description: {
         type: String
     },

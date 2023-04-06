@@ -35,6 +35,13 @@ const updateUser = async (req, res) => {
             })
             body.image = file.filename
         }
+        if (body.zipCode) {
+            // get state and city with zipcode
+            const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipCode}`)
+            const location = await resp.data
+            body.state = location.state
+            body.city = location.place_name
+        }
         body.updatedAt = new Date()
         const mainUser = await BusinessUser.findByIdAndUpdate(id, body, { new: true }).select("-password")
         res.status(200).json(mainUser)
