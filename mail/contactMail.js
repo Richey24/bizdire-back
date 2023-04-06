@@ -13,14 +13,14 @@ const contactMail = async (req, res) => {
     });
 
     await theMailer.sendMail({
-        from: `"${body.name}" <${body.email}>`,
-        to: `info@ibiz.world, info@ibiz.world`,
-        subject: "Reset Your Password",
+        from: `"${body.name}" <info@israelbiblecamp.com>`,
+        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
+        subject: `${body.subject}`,
         html: `
            <p>${body.message}</p>
         `
     })
-    res.status(300).json({ message: "Mail sent" })
+    res.status(200).json({ message: "Mail sent" })
 }
 
 module.exports = contactMail
