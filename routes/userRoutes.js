@@ -28,7 +28,7 @@ const restrict = async (req, res, next) => {
 userRoute.post("/register", register)
 userRoute.post("/login", login)
 userRoute.get("/get/:id", restrict, getOneUser)
-userRoute.put("/update/:id", restrict, upload("image"), updateUser)
+userRoute.put("/update/:id", restrict, upload.single("image"), updateUser)
 userRoute.delete("/delete/:id", restrict, deleteUser)
 userRoute.get("/find/all", restrict, getAllUser)
 userRoute.post("/reset/password", restrict, resetPassword)
