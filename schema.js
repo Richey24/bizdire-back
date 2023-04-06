@@ -93,7 +93,7 @@ const listing = mongoose.Schema({
         type: String
     },
     paymentMethod: {
-        type: String
+        type: Array
     },
     createdAt: {
         type: Date,
