@@ -46,7 +46,6 @@ const updateUser = async (req, res) => {
         }
         body.updatedAt = new Date()
         const mainUser = await BusinessUser.findByIdAndUpdate(id, body, { new: true }).select("-password")
-        console.log(mainUser);
         res.status(200).json(mainUser)
     } catch (error) {
         res.status(500).json({ message: "An error occurred" })
