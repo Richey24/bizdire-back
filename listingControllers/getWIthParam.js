@@ -8,6 +8,7 @@ const getWithParams = async (req, res) => {
         keys.forEach((key) => {
             obj[key] = { "$regex": body[key], "$options": "i" }
         })
+        console.log(obj);
         const listings = await BusinessListing.find(obj)
         return res.status(200).json(listings)
     } catch (error) {

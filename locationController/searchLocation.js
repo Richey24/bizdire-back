@@ -7,7 +7,8 @@ const searchLocation = async (req, res) => {
     keys.forEach((key) => {
         obj[key] = { "$regex": body[key], "$options": "i" }
     })
-    const location = BizLocation.find(obj)
+    console.log(obj);
+    const location = await BizLocation.find(obj)
     res.status(200).json(location)
 }
 
