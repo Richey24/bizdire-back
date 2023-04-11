@@ -115,6 +115,12 @@ const category = mongoose.Schema({
     category: {
         type: String
     },
+    noOfListings: {
+        type: Number
+    },
+    cities: {
+        type: Array
+    },
     createdAt: {
         type: Date,
         default: Date.now()
