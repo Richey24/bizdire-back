@@ -6,6 +6,7 @@ const listingRoutes = require("./routes/listingRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const locationRoutes = require("./routes/locationRoutes");
 const contactMail = require("./mail/contactMail");
+const { BusinessUser } = require("./schema");
 const app = express()
 require("dotenv").config({ path: ".env" })
 
@@ -32,6 +33,12 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.send("hello world")
 })
+
+app.get("/user/get/noofuser", async (req, res) => {
+    const users = await BusinessUser.find({})
+    res.status(200).json({ noOfUser: users.length })
+})
+
 app.post("/contact", contactMail)
 
 // all user routes begin with /user
