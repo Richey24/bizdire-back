@@ -9,6 +9,7 @@ const deleteUser = require("../userController/deleteUser");
 const getAllUser = require("../userController/getAllUser");
 const resetPassword = require("../userController/resetPass");
 const sendResetMail = require("../userController/sendResetMail");
+const { BusinessUser } = require("../schema");
 const upload = multer({ dest: "./upload" })
 
 const userRoute = express.Router()
@@ -33,5 +34,9 @@ userRoute.delete("/delete/:id", restrict, deleteUser)
 userRoute.get("/find/all", restrict, getAllUser)
 userRoute.post("/reset/password", restrict, resetPassword)
 userRoute.post("/reset/send", sendResetMail)
+userRoute.get("/get/noofuser", async (req, res) => {
+    const users = await BusinessUser.find({})
+    res.status(200).json({ noOfUser: users.length })
+})
 
 module.exports = userRoute
