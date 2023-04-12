@@ -1,6 +1,6 @@
 const { default: axios } = require("axios")
 const { BlobServiceClient } = require("@azure/storage-blob")
-const { BusinessListing, BizLocation } = require("../schema")
+const { BusinessListing, BizLocation, BusinessUser } = require("../schema")
 const fs = require("fs")
 const { BizCat } = require("../schema")
 require("dotenv").config({ path: "../.env" })
@@ -35,6 +35,10 @@ const createList = async (req, res) => {
         })
         body.image = file.filename
     }
+    // get User details
+    const user = await BusinessUser.findById(body.userID)
+    body.userName = user.name
+    body.userImage = user.image
     // get state and city with zipcode
     const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipCode}`)
     const location = await resp.data

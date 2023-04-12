@@ -48,6 +48,12 @@ const listing = mongoose.Schema({
     userID: {
         type: String
     },
+    userName: {
+        type: String
+    },
+    userImage: {
+        type: String
+    },
     category: {
         type: String
     },
@@ -113,6 +119,9 @@ const listing = mongoose.Schema({
 
 const category = mongoose.Schema({
     category: {
+        type: String
+    },
+    image: {
         type: String
     },
     noOfListings: {
