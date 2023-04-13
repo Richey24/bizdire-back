@@ -67,6 +67,14 @@ const listing = mongoose.Schema({
         type: Boolean,
         default: true
     },
+    featured: {
+        type: Boolean,
+        default: false
+    },
+    showcase: {
+        type: Boolean,
+        default: false
+    },
     views: {
         type: Number,
         default: 0
