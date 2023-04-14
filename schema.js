@@ -60,6 +60,9 @@ const listing = mongoose.Schema({
     category: {
         type: String
     },
+    zipcode: {
+        type: String
+    },
     city: {
         type: String
     },
