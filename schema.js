@@ -109,6 +109,9 @@ const listing = mongoose.Schema({
     googleMapUrl: {
         type: String
     },
+    email: {
+        type: String
+    },
     establishedYear: {
         type: String
     },
