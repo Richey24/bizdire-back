@@ -39,6 +39,7 @@ const createList = async (req, res) => {
     const user = await BusinessUser.findById(body.userID)
     body.userName = user.name
     body.userImage = user.image
+    body.userNumber = user.phoneNumber
     // get state and city with zipcode
     const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipCode}`)
     const location = await resp.data

@@ -54,6 +54,9 @@ const listing = mongoose.Schema({
     userImage: {
         type: String
     },
+    userNumber: {
+        type: String
+    },
     category: {
         type: String
     },
@@ -110,6 +113,9 @@ const listing = mongoose.Schema({
         type: String
     },
     email: {
+        type: String
+    },
+    website: {
         type: String
     },
     establishedYear: {
