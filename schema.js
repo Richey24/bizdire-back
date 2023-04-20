@@ -173,9 +173,75 @@ const location = mongoose.Schema({
     }
 })
 
+const event = mongoose.Schema({
+    userID: {
+        type: String
+    },
+    userName: {
+        type: String
+    },
+    eventName: {
+        type: String
+    },
+    contactPoc: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    phoneNumber: {
+        type: String
+    },
+    website: {
+        type: String
+    },
+    dateOfEvent: {
+        type: Array
+    },
+    timeOfEvent: {
+        type: Array
+    },
+    description: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    locationType: {
+        type: String
+    },
+    zipcode: {
+        type: String
+    },
+    lat: {
+        type: String
+    },
+    long: {
+        type: String
+    },
+    cost: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    userImage: {
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now()
+    },
+})
+
 const BusinessUser = mongoose.model("Business_user", user, "business_user")
 const BusinessListing = mongoose.model("Business_listing", listing, "business_listing")
 const BizCat = mongoose.model("Biz_cat", category, "biz_cat")
 const BizLocation = mongoose.model("Biz_loc", location, "biz_loc")
+const BizEvent = mongoose.model("Biz_event", event, "biz_event")
 
-module.exports = { BusinessUser, BusinessListing, BizCat, BizLocation }
+module.exports = { BusinessUser, BusinessListing, BizCat, BizLocation, BizEvent }

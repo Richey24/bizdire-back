@@ -41,7 +41,7 @@ const createList = async (req, res) => {
     body.userImage = user.image
     body.userNumber = user.phoneNumber
     // get state and city with zipcode
-    const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipCode}`)
+    const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipcode}`)
     const location = await resp.data
     body.state = location.state
     body.city = location.place_name

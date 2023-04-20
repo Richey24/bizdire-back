@@ -7,6 +7,7 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const locationRoutes = require("./routes/locationRoutes");
 const contactMail = require("./mail/contactMail");
 const { BusinessUser } = require("./schema");
+const eventRoutes = require("./routes/eventRoutes");
 const app = express()
 require("dotenv").config({ path: ".env" })
 
@@ -49,3 +50,5 @@ app.use("/listing", listingRoutes)
 app.use("/category", categoryRoutes)
 // all location routes begin with /location
 app.use("/location", locationRoutes)
+// all event routes begin with /event
+app.use("/event", eventRoutes)
