@@ -16,6 +16,12 @@ const user = mongoose.Schema({
     zipcode: {
         type: String
     },
+    lat: {
+        type: String
+    },
+    long: {
+        type: String
+    },
     image: {
         type: String
     },
