@@ -1,7 +1,7 @@
 const { default: axios } = require("axios")
 const { BlobServiceClient } = require("@azure/storage-blob")
 const fs = require("fs")
-const { BizEvent } = require("../schema")
+const { BizEvent, BusinessUser } = require("../schema")
 require("dotenv").config({ path: "../.env" })
 const blobClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=absa7kzimnaf;AccountKey=8sH4dhZjJa8cMyunmS1iDmwve5hZKLo5kaA1M9ubZScLCJ2oEsuSvWT46P2t+ouKoCwFENosnC4m+AStWRQ+rQ==;EndpointSuffix=core.windows.net")
 const containerClient = blobClient.getContainerClient("newcontainer")
@@ -38,11 +38,13 @@ const createEvent = async (req, res) => {
         body.userImage = user.image
         body.userNumber = user.phoneNumber
         // get state, city, lat, long with zipcode
-        const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipcode}`)
-        const location = await resp.data
-        body.location = `${location.place_name}, ${location.state}`
-        body.lat = location.lat
-        body.long = location.lng
+        if (body.zipcode) {
+            const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipcode}`)
+            const location = await resp.data
+            body.location = `${location.place_name}, ${location.state}`
+            body.lat = location.lat
+            body.long = location.lng
+        }
 
         await BizEvent.create(body)
         return res.status(200).json({ message: "Created Successfully" })
