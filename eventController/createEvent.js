@@ -10,7 +10,9 @@ const createEvent = async (req, res) => {
     try {
         const body = req.body
         const file = req.file
-
+        if (!body.userID) {
+            return res.status(400).json({ message: "User ID is required" })
+        }
         if (file) {
             // upload image to azure
             const imageClient = containerClient.getBlockBlobClient(file.filename)
@@ -45,7 +47,6 @@ const createEvent = async (req, res) => {
             body.lat = location.lat
             body.long = location.lng
         }
-
         await BizEvent.create(body)
         return res.status(200).json({ message: "Created Successfully" })
 
