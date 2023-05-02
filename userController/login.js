@@ -16,7 +16,7 @@ const login = async (req, res) => {
         if (!pass) {
             return res.status(401).json({ message: "Incorrect password" })
         }
-        const token = jwt.sign({ id: user._id }, "rich", { expiresIn: "10h" })
+        const token = jwt.sign({ id: user._id }, "rich", { expiresIn: "30d" })
         const mainUser = await BusinessUser.findByIdAndUpdate(user._id, { mainToken: token }, { new: true }).select("-password")
         res.status(200).json(mainUser)
     } catch (error) {
