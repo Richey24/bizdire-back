@@ -14,7 +14,7 @@ listingRoutes.post("/create", upload.single("image"), createList)
 listingRoutes.get("/get/all", getAllListing)
 listingRoutes.post("/get/params", getWithParams)
 listingRoutes.get("/get/one/:id", getListByID)
-listingRoutes.put("/update/:id", updateList)
+listingRoutes.put("/update/:id", upload.single("image"), updateList)
 listingRoutes.delete("/delete/:id", deleteList)
 
 module.exports = listingRoutes

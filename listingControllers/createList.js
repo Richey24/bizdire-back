@@ -41,20 +41,23 @@ const createList = async (req, res) => {
     body.userImage = user.image
     body.userNumber = user.phoneNumber
     // get state and city with zipcode
-    const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipcode}`)
-    const location = await resp.data
-    body.state = location.state
-    body.city = location.place_name
-    const obj = {
-        state: location.state,
-        city: location.place_name
-    }
-    const loc = await BizLocation.find({ state: location.state, city: location.place_name })
-    await BizCat.findOneAndUpdate({ category: body.category }, { $inc: { noOfListings: 1 }, $addToSet: { cities: `${obj.city}, ${obj.state}` } }, { new: true })
+    if (body.zipcode) {
+        const resp = await axios.get(`https://zip-api.eu/api/v1/info/US-${body.zipcode}`)
+        const location = await resp.data
+        body.state = location.state
+        body.city = location.place_name
+        const obj = {
+            state: location.state,
+            city: location.place_name
+        }
+        const loc = await BizLocation.find({ state: location.state, city: location.place_name })
+        await BizCat.findOneAndUpdate({ category: body.category }, { $inc: { noOfListings: 1 }, $addToSet: { cities: `${obj.city}, ${obj.state}` } }, { new: true })
 
-    if (loc.length < 1) {
-        await BizLocation.create(obj)
+        if (loc.length < 1) {
+            await BizLocation.create(obj)
+        }
     }
+
     await BusinessListing.create(body)
     return res.status(200).json({ message: "Created Successfully" })
     // } catch (error) {
