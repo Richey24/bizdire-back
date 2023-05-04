@@ -11,7 +11,7 @@ const upload = multer({ dest: "./upload" })
 const eventRoutes = express.Router()
 
 eventRoutes.post("/create", upload.single("image"), createEvent)
-eventRoutes.put("/update/:id", updateEvent)
+eventRoutes.put("/update/:id", upload.single("image"), updateEvent)
 eventRoutes.post("/search", searchEvent)
 eventRoutes.get("/get/all", getAllEvent)
 eventRoutes.get("/get/one/:id", getOneEvent)
