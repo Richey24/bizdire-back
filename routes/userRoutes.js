@@ -9,7 +9,7 @@ const deleteUser = require("../userController/deleteUser");
 const getAllUser = require("../userController/getAllUser");
 const resetPassword = require("../userController/resetPass");
 const sendResetMail = require("../userController/sendResetMail");
-const { BusinessUser } = require("../schema");
+const changePassword = require("../userController/changePassword");
 const upload = multer({ dest: "./upload" })
 
 const userRoute = express.Router()
@@ -34,5 +34,6 @@ userRoute.delete("/delete/:id", restrict, deleteUser)
 userRoute.get("/find/all", restrict, getAllUser)
 userRoute.post("/reset/password", restrict, resetPassword)
 userRoute.post("/reset/send", sendResetMail)
+userRoute.post("/change/password", changePassword)
 
 module.exports = userRoute

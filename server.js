@@ -8,6 +8,7 @@ const locationRoutes = require("./routes/locationRoutes");
 const contactMail = require("./mail/contactMail");
 const { BusinessUser } = require("./schema");
 const eventRoutes = require("./routes/eventRoutes");
+const userMail = require("./mail/userMail");
 const app = express()
 require("dotenv").config({ path: ".env" })
 
@@ -41,6 +42,7 @@ app.get("/user/get/noofuser", async (req, res) => {
 })
 
 app.post("/contact", contactMail)
+app.post("/send/mail", userMail)
 
 // all user routes begin with /user
 app.use("/user", userRoute)
