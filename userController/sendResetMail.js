@@ -12,7 +12,7 @@ const sendResetMail = async (req, res) => {
         return res.status(404).json({ message: "No user found with this ID" })
     }
     const token = jwt.sign({ id: user._id }, "rich", { expiresIn: "10h" })
-    await resetMail(user.email, token, user.firstName)
+    await resetMail(user.email, token, user.name)
     res.status(200).json({ message: "Reset Mail Sent" })
 }
 
